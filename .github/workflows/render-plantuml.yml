@@ -1,0 +1,46 @@
+name: Render PlantUML diagrams
+
+on:
+  push:
+    branches-ignore:
+      - main
+    paths:
+      - "**/*.puml"
+
+permissions:
+  contents: write
+
+jobs:
+  render-plantuml:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install PlantUML and Graphviz
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y plantuml graphviz
+
+      - name: Render PlantUML diagrams
+        run: |
+          find . -type f -name "*.puml" -print0 | \
+          xargs -0 -r plantuml -tpng
+
+      - name: Commit generated PNG files
+        run: |
+          git config user.name "B.A.D. Diagram Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No PlantUML output changed."
+            exit 0
+          fi
+
+          git commit -m "docs: regenerate PlantUML diagrams"
+          git push origin HEAD:${{ github.ref_name }}
