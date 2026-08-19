@@ -1,0 +1,173 @@
+schema_version: 1
+project: bad
+roadmap:
+- id: WP-001
+  type: waypoint
+  title: Recording and Debug Playback
+  status: completed
+  description: 'Establish microphone recording and debug playback as the foundation of the
+    B.A.D. practice and analysis pipeline.
+
+    '
+- id: WP-002
+  type: waypoint
+  title: Sample Alignment and Recorded Session
+  status: completed
+  depends_on:
+  - WP-001
+  description: 'Introduce a stable recorded-session timeline and align captured audio samples
+    with the exercise timeline, including recording control behavior such as pause, resume,
+    repeat, and stop.
+
+    '
+- id: WP-003
+  type: waypoint
+  title: Offline Audio Preprocessing
+  status: completed
+  depends_on:
+  - WP-002
+  description: 'Add offline preprocessing, envelope and noise-floor analysis, debug visualization,
+    and CSV export tooling for inspecting recorded sessions before timing judgement.
+
+    '
+- id: WP-004
+  type: waypoint
+  title: Universal Timing Calibration
+  status: completed
+  depends_on:
+  - WP-003
+  description: 'Add speaker-to-microphone timing calibration so device latency can be compensated
+    before detected drum hits are judged against expected notes.
+
+    '
+- id: WP-005
+  type: waypoint
+  title: Configurable Metronome Rejection
+  status: completed
+  depends_on:
+  - WP-004
+  description: 'Make the metronome and rejection pipeline configurable and freeze the relevant
+    configuration into each active session so later setting changes cannot reinterpret completed
+    results.
+
+    '
+- id: WP-006
+  type: waypoint
+  title: Localized FFT Metronome Rejection
+  status: completed
+  depends_on:
+  - WP-005
+  description: 'Evolve metronome rejection toward localized frequency-domain analysis, using
+    FFT-based detection to suppress metronome tones while preserving drum-hit information
+    for downstream analysis.
+
+    '
+- id: WP-007
+  type: waypoint
+  title: Results, Statistics and Practice Verdict
+  status: completed
+  depends_on:
+  - WP-006
+  description: 'Complete the local practice-analysis flow with hit detection, expected-note
+    matching, Early, On Time, Late, Missed, and Extra judgement, timing statistics, detailed
+    results, an interactive production graph, and a high-level practice verdict.
+
+    '
+- id: WP-008
+  type: waypoint
+  title: Saved Runs, History and Progress
+  status: planned
+  depends_on:
+  - WP-007
+  description: 'Persist completed practice runs and production graphs, provide a history of
+    previous sessions, and introduce progress tracking across repeated practice over time.
+
+    '
+- id: WP-009
+  type: waypoint
+  title: B.A.D. Core Extraction
+  status: planned
+  depends_on:
+  - WP-008
+  description: 'Extract audio processing, detection, matching, judgement, statistics, result
+    models, and reusable domain logic into a platform-independent core with no dependency
+    on Android UI or framework APIs.
+
+    '
+- id: WP-010
+  type: waypoint
+  title: Standalone B.A.D. Core Distribution
+  status: planned
+  depends_on:
+  - WP-009
+  description: 'Establish B.A.D. Core as a separately versioned reusable component with a
+    stable API boundary, release tags, dependency-consumption strategy, and licensing suitable
+    for reuse by multiple clients.
+
+    '
+- id: WP-011
+  type: waypoint
+  title: B.A.D. Core Web Test Harness
+  status: planned
+  depends_on:
+  - WP-010
+  description: Build a deliberately simple web test harness that loads an exercise definition
+    and WAV recording, runs the extracted B.A.D. Core analysis flow, and compares its results
+    with the Android implementation to validate portability and behavioral consistency outside
+    the mobile application.
+- id: WP-012
+  type: waypoint
+  title: B.A.D. Web Reference Client
+  status: planned
+  depends_on:
+  - WP-011
+  description: Develop the proper B.A.D. web client on top of the validated reusable core,
+    turning the earlier engineering test harness into a maintained user-facing client within
+    the B.A.D. project family.
+- id: WP-013
+  type: waypoint
+  title: B.A.D. Hub Repository
+  status: planned
+  depends_on:
+  - WP-012
+  description: Transform the main B.A.D. repository into the umbrella project hub for B.A.D.
+    Core, B.A.D. Mobile, and B.A.D. Web, providing project-level documentation, architecture,
+    roadmap, release overview, and links without duplicating implementation code from the
+    component repositories.
+- id: v1.0.0
+  type: milestone
+  title: Complete Practice Experience
+  status: planned
+  description: Deliver the complete first-generation B.A.D. experience as a self-contained
+    Android drum-practice application, including recording, calibration, signal processing,
+    timing judgement, results, saved runs, history, and progress tracking.
+  includes:
+  - WP-001
+  - WP-002
+  - WP-003
+  - WP-004
+  - WP-005
+  - WP-006
+  - WP-007
+  - WP-008
+- id: v2.0.0
+  type: milestone
+  title: Reusable B.A.D. Core
+  status: planned
+  description: Separate the analysis engine from Android, establish B.A.D. Core as an independently
+    versioned reusable component, and validate the architecture through a lightweight web
+    test harness.
+  includes:
+  - WP-009
+  - WP-010
+  - WP-011
+- id: v3.0.0
+  type: milestone
+  title: B.A.D. Platform
+  status: planned
+  description: Evolve B.A.D. into a multi-client project family composed of B.A.D. Core, B.A.D.
+    Mobile, and B.A.D. Web, with the main B.A.D. repository serving as the umbrella project
+    hub.
+  includes:
+  - WP-012
+  - WP-013
