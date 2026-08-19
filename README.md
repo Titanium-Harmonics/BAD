@@ -111,3 +111,47 @@ the debug APK and reports for successful CI runs.
   playback.
 - Calibration targets the phone speaker and built-in microphone path; changing
   audio routes or acoustic conditions can change timing and detection quality.
+
+## Titanium Harmonics Project Metadata
+
+This repository follows the **Titanium Harmonics project manifest convention**.
+
+Machine-readable project metadata is stored under:
+
+```text
+.th/
+├── project.yaml
+└── roadmap.yaml
+```
+
+### `project.yaml`
+
+Defines the project's identity and general metadata, including:
+
+* Project name and description
+* Repository information
+* Current project status
+* Target platforms
+* Technologies
+* Project categories
+* Branding and relevant links
+
+### `roadmap.yaml`
+
+Defines the project's development timeline using two types of entries:
+
+* **Waypoints (`WP-xxx`)** — meaningful engineering or development steps.
+* **Milestones (`vX.Y.Z`)** — significant version targets grouping related waypoints.
+
+Waypoints can be completed, in progress, planned, blocked, cancelled, or still at the idea stage. Milestones may be planned, released, or deprecated.
+
+The roadmap represents both the project's development history and its planned future direction. It is updated as features, fixes, architectural changes, and new ideas are incorporated into the project.
+
+### Titanium Harmonics Website
+
+The `.th` files are designed to be consumed by the Titanium Harmonics website to automatically generate project information and development timelines.
+
+They intentionally contain **project-level information rather than implementation details**. Detailed technical documentation remains in the repository documentation, while implementation history remains available through Git commits and pull requests.
+
+> `.th/roadmap.yaml` is the source of truth for the high-level B.A.D. development roadmap.
+  
