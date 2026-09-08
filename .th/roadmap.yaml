@@ -76,7 +76,7 @@ roadmap:
 - id: WP-008
   type: waypoint
   title: Saved Runs, History and Progress
-  status: planned
+  status: in_progress
   depends_on:
   - WP-007
   description: 'Persist completed practice runs and production graphs, provide a history of
